@@ -1,55 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-Hant">
 <head>
     <meta charset="UTF-8">
-    <title>我的漂亮個人網頁</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xufumi | 空間</title>
     <style>
-        /* 這裡就是 CSS 魔法，讓網頁變好看的地方 */
-       body {
-    /* 把括號裡的網址換成你喜歡的圖片網址 */
-    background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
-    
-    /* 讓圖片舖滿整個螢幕，不會重疊亂跳 */
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    font-family: "Microsoft JhengHei", sans-serif;
-}
+        /* 池核風格：清涼、安靜、淺藍 */
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            /* 這裡換成了一張靜謐的池水圖 */
+            background: linear-gradient(rgba(173, 216, 230, 0.4), rgba(173, 216, 230, 0.4)), 
+                        url('https://images.unsplash.com/photo-1565039320828-e97535b882e0?q=80&w=2000');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            color: #2c3e50;
         }
-.card {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+
+        /* 仿 Carrd 的簡約高雅卡片 */
+        .container {
+            background: rgba(255, 255, 255, 0.6); /* 半透明白 */
+            backdrop-filter: blur(15px); /* 毛玻璃特效 */
+            -webkit-backdrop-filter: blur(15px);
+            padding: 50px 40px;
+            border-radius: 2px; /* 方正一點更有高雅感 */
+            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
             text-align: center;
-            max-width: 300px;
-}
-        h1 { color: #333; margin-bottom: 10px; }
-        p { color: #666; line-height: 1.6; }
-        .button {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 20px;
-            background: #4facfe;
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            transition: 0.3s;
+            max-width: 400px;
+            width: 80%;
+            border: 1px solid rgba(255,255,255,0.3);
+            letter-spacing: 2px; /* 字距拉開更有氣質 */
         }
-        .button:hover { transform: scale(1.1); }
+
+        h1 {
+            font-weight: 300;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #5d6d7e;
+        }
+
+        .line {
+            width: 30px;
+            height: 1px;
+            background: #abd8e6;
+            margin: 20px auto;
+        }
+
+        p {
+            font-size: 0.9rem;
+            line-height: 2;
+            color: #7f8c8d;
+        }
+
+        /* 按鈕風格 */
+        .links {
+            margin-top: 30px;
+        }
+
+        .link-btn {
+            display: block;
+            text-decoration: none;
+            color: #5d6d7e;
+            font-size: 0.8rem;
+            padding: 10px;
+            border: 1px solid #d6eaf8;
+            margin-bottom: 10px;
+            transition: 0.4s;
+            background: rgba(255,255,255,0.4);
+        }
+
+        .link-btn:hover {
+            background: #d6eaf8;
+            letter-spacing: 4px; /* 移上去字會拉開 */
+        }
     </style>
 </head>
 <body>
-    <div class="card">
-        <h1>Hello!</h1>
-        <p>我是 <strong>xufumi</strong><br>這是我的第一個漂亮網頁！</p>
-        <a href="#" class="button">按我沒反應喔！</a>
+
+    <div class="container">
+        <h1>xufumi</h1>
+        <div class="line"></div>
+        <p>
+            這是我的祕密空間<br>
+            靜謐、純淨、微涼<br>
+            如同沉入池底的呼吸
+        </p>
+        
+        <div class="links">
+            <a href="#" class="link-btn">關於我</a>
+            <a href="#" class="link-btn">作品集</a>
+            <a href="https://fumi1127.carrd.co/" class="link-btn">我的 Carrd</a>
+        </div>
     </div>
+
 </body>
 </html>
