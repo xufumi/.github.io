@@ -5,23 +5,32 @@
     <title>我的漂亮個人網頁</title>
     <style>
         /* 這裡就是 CSS 魔法，讓網頁變好看的地方 */
-        body {
-            background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            font-family: "Microsoft JhengHei", sans-serif;
+       body {
+    /* 把括號裡的網址換成你喜歡的圖片網址 */
+    background-image: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e');
+    
+    /* 讓圖片舖滿整個螢幕，不會重疊亂跳 */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: "Microsoft JhengHei", sans-serif;
+}
         }
-        .card {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 300px;
-        }
+.card {
+    background: rgba(255, 255, 255, 0.8); /* 最後一個數字 0.8 是透明度，越小越透明 */
+    backdrop-filter: blur(10px); /* 讓背景有一點點模糊，很有質感 */
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    text-align: center;
+    max-width: 300px;
+}
         h1 { color: #333; margin-bottom: 10px; }
         p { color: #666; line-height: 1.6; }
         .button {
