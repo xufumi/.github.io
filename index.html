@@ -4,123 +4,182 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>xufumi | 空間</title>
-    <style>
-        /* 池核風格：清涼、安靜、淺藍 */
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            /* 這裡換成了一張靜謐的池水圖 */
-            background: linear-gradient(rgba(173, 216, 230, 0.4), rgba(173, 216, 230, 0.4)), 
-                        url('https://images.unsplash.com/photo-1565039320828-e97535b882e0?q=80&w=2000');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
-            color: #2c3e50;
-        }
-        /* 沙漏本體設計 */
+    /* ==============================
+   請把原本 <style> 裡面的內容
+   全部換成下面這段
+   ============================== */
+
+/* 池核風格：清涼、安靜、淺藍 */
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* 靜謐的池水圖背景 */
+    background: linear-gradient(rgba(173, 216, 230, 0.4), rgba(173, 216, 230, 0.4)), 
+                url('https://images.unsplash.com/photo-1565039320828-e97535b882e0?q=80&w=2000');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+    color: #2c3e50;
+}
+
+/* --- 酷炫的白色沙子沙漏 --- */
 .hourglass {
     display: block;
     background: none;
-    margin: 0 auto 20px auto;
-    border: none;
-    width: 2em;
-    height: 4em;
+    margin: 0 auto 30px auto; /* 留多一點空間給沙漏 */
+    width: 2.5em; /* 稍微放大一點點 */
+    height: 4.5em;
     position: relative;
     /* 這裡設定 60s 代表一分鐘翻轉一次 */
-    animation: flip 60s infinite linear;
+    animation: hourglass_flip 60s infinite linear;
 }
 
-/* 畫出沙漏的形狀 */
-.hourglass:after, .hourglass:before {
+/* 玻璃外框 */
+.hourglass:before, .hourglass:after {
     content: "";
     box-sizing: border-box;
     display: block;
-    border-left: 1em solid transparent;
-    border-right: 1em solid transparent;
+    position: absolute;
     width: 0;
     height: 0;
-    position: absolute;
+    border-left: 1.25em solid transparent;
+    border-right: 1.25em solid transparent;
 }
 
-/* 上半部沙漏 */
+/* 上半部玻璃 */
 .hourglass:before {
-    border-top: 2em solid #abd8e6; /* 使用你的池水淺藍色 */
+    border-top: 2.25em solid rgba(171, 216, 230, 0.3); /* 半透明玻璃藍 */
     top: 0;
 }
 
-/* 下半部沙漏 */
+/* 下半部玻璃 */
 .hourglass:after {
-    border-bottom: 2em solid #abd8e6;
+    border-bottom: 2.25em solid rgba(171, 216, 230, 0.3); /* 半透明玻璃藍 */
     bottom: 0;
 }
 
-/* 翻轉動畫：每分鐘轉 180 度 */
-@keyframes flip {
+/* --- 白色的沙子來了 --- */
+.hourglass-sand {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+/* 上面漏掉的沙子 */
+.hourglass-sand::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 1.25em solid transparent;
+    border-right: 1.25em solid transparent;
+    border-top: 2.25em solid #ffffff; /* 白沙 */
+    animation: top_sand_drain 60s infinite linear;
+    transform-origin: top center;
+}
+
+/* 下面堆積的沙子 */
+.hourglass-sand::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 1.25em solid transparent;
+    border-right: 1.25em solid transparent;
+    border-bottom: 2.25em solid #ffffff; /* 白沙 */
+    animation: bottom_sand_fill 60s infinite linear;
+    transform-origin: bottom center;
+}
+
+/* 動畫：上面沙子漏掉 */
+@keyframes top_sand_drain {
+    0% { transform: scaleY(1); }
+    95% { transform: scaleY(0); } /* 前 57 秒漏光 */
+    100% { transform: scaleY(0); }
+}
+
+/* 動畫：下面沙子堆積 */
+@keyframes bottom_sand_fill {
+    0% { transform: scaleY(0); }
+    95% { transform: scaleY(1); } /* 前 57 秒堆滿 */
+    100% { transform: scaleY(1); }
+}
+
+/* 動畫：沙漏翻轉 */
+@keyframes hourglass_flip {
     0% { transform: rotate(0); }
-    95% { transform: rotate(0); } /* 前 57 秒都不動 */
+    95% { transform: rotate(0); } /* 前 57 秒靜止漏沙 */
     100% { transform: rotate(180deg); } /* 最後 3 秒快速翻轉 */
 }
-        /* 仿 Carrd 的簡約高雅卡片 */
-        .container {
-            background: rgba(255, 255, 255, 0.6); /* 半透明白 */
-            backdrop-filter: blur(15px); /* 毛玻璃特效 */
-            -webkit-backdrop-filter: blur(15px);
-            padding: 50px 40px;
-            border-radius: 2px; /* 方正一點更有高雅感 */
-            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-            text-align: center;
-            max-width: 400px;
-            width: 80%;
-            border: 1px solid rgba(255,255,255,0.3);
-            letter-spacing: 2px; /* 字距拉開更有氣質 */
-        }
+/* --- 沙漏部分結束 --- */
 
-        h1 {
-            font-weight: 300;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #5d6d7e;
-        }
+/* 仿 Carrd 的簡約高雅卡片 */
+.container {
+    background: rgba(255, 255, 255, 0.6); /* 半透明白 */
+    backdrop-filter: blur(15px); /* 毛玻璃特效 */
+    -webkit-backdrop-filter: blur(15px);
+    padding: 50px 40px;
+    border-radius: 2px; /* 方正一點更有高雅感 */
+    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+    text-align: center;
+    max-width: 400px;
+    width: 80%;
+    border: 1px solid rgba(255,255,255,0.3);
+    letter-spacing: 2px; /* 字距拉開更有氣質 */
+}
 
-        .line {
-            width: 30px;
-            height: 1px;
-            background: #5d6d7e;
-            margin: 20px auto;
-        }
+h1 {
+    font-weight: 300;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #5d6d7e;
+}
 
-        p {
-            font-size: 0.9rem;
-            line-height: 2;
-            color: #7f8c8d;
-        }
+.line {
+    width: 30px;
+    height: 1px;
+    background: #5d6d7e;
+    margin: 20px auto;
+}
 
-        /* 按鈕風格 */
-        .links {
-            margin-top: 25px;
-        }
+p {
+    font-size: 0.9rem;
+    line-height: 2;
+    color: #7f8c8d;
+}
 
-        .link-btn {
-            display: block;
-            text-decoration: none;
-            color: #5d6d7e;
-            font-size: 0.8rem;
-            padding: 10px;
-            border: 1px solid #d6eaf8;
-            margin-bottom: 10px;
-            transition: 0.4s;
-            background: rgba(255,255,255,0.4);
-        }
+/* 按鈕風格 */
+.links {
+    margin-top: 25px;
+}
 
-        .link-btn:hover {
-            background: #d6eaf8;
-            letter-spacing: 4px; /* 移上去字會拉開 */
-        }
+.link-btn {
+    display: block;
+    text-decoration: none;
+    color: #5d6d7e;
+    font-size: 0.8rem;
+    padding: 10px;
+    border: 1px solid #d6eaf8;
+    margin-bottom: 10px;
+    transition: 0.4s;
+    background: rgba(255,255,255,0.4);
+}
+
+.link-btn:hover {
+    background: #d6eaf8;
+    letter-spacing: 4px; /* 移上去字會拉開 */
+}
     </style>
 </head>
 <body>
