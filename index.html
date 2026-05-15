@@ -22,7 +22,49 @@
             font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
             color: #2c3e50;
         }
+        /* 沙漏本體設計 */
+.hourglass {
+    display: block;
+    background: none;
+    margin: 0 auto 20px auto;
+    border: none;
+    width: 2em;
+    height: 4em;
+    position: relative;
+    /* 這裡設定 60s 代表一分鐘翻轉一次 */
+    animation: flip 60s infinite linear;
+}
 
+/* 畫出沙漏的形狀 */
+.hourglass:after, .hourglass:before {
+    content: "";
+    box-sizing: border-box;
+    display: block;
+    border-left: 1em solid transparent;
+    border-right: 1em solid transparent;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+/* 上半部沙漏 */
+.hourglass:before {
+    border-top: 2em solid #abd8e6; /* 使用你的池水淺藍色 */
+    top: 0;
+}
+
+/* 下半部沙漏 */
+.hourglass:after {
+    border-bottom: 2em solid #abd8e6;
+    bottom: 0;
+}
+
+/* 翻轉動畫：每分鐘轉 180 度 */
+@keyframes flip {
+    0% { transform: rotate(0); }
+    95% { transform: rotate(0); } /* 前 57 秒都不動 */
+    100% { transform: rotate(180deg); } /* 最後 3 秒快速翻轉 */
+}
         /* 仿 Carrd 的簡約高雅卡片 */
         .container {
             background: rgba(255, 255, 255, 0.6); /* 半透明白 */
@@ -83,7 +125,7 @@
 </head>
 <body>
 
-    <div class="container">
+    <div class="hourglass"></div>
         <h1>xufumi</h1>
         <div class="line"></div>
         <p>
