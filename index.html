@@ -1,109 +1,162 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>xufumi | 空間</title>
-    
-    <style> 
-/* 池核風格：清涼、安靜、淺藍 */
-body {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    /* 靜謐的池水圖背景 */
-    background: linear-gradient(rgba(173, 216, 230, 0.4), rgba(173, 216, 230, 0.4)), 
-                url('https://images.unsplash.com/photo-1565039320828-e97535b882e0?q=80&w=2000');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
-    color: #2c3e50;
-}
-
-
-
-/* 仿 Carrd 的簡約高雅卡片 */
-.container {
-    background: rgba(255, 255, 255, 0.6); /* 半透明白 */
-    backdrop-filter: blur(15px); /* 毛玻璃特效 */
-    -webkit-backdrop-filter: blur(15px);
-    padding: 50px 40px;
-    border-radius: 2px; /* 方正一點更有高雅感 */
-    box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-    text-align: center;
-    max-width: 400px;
-    width: 80%;
-    border: 1px solid rgba(255,255,255,0.3);
-    letter-spacing: 2px; /* 字距拉開更有氣質 */
-}
-
-h1 {
-    font-weight: 300;
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-    color: #5d6d7e;
-}
-
-.line {
-    width: 30px;
-    height: 1px;
-    background: #5d6d7e;
-    margin: 20px auto;
-}
-
-p {
-    font-size: 0.9rem;
-    line-height: 2;
-    color: #7f8c8d;
-}
-
-/* 按鈕風格 */
-.links {
-    margin-top: 25px;
-}
-
-.link-btn {
-    display: block;
-    text-decoration: none;
-    color: #5d6d7e;
-    font-size: 0.8rem;
-    padding: 10px;
-    border: 1px solid #d6eaf8;
-    margin-bottom: 10px;
-    transition: 0.4s;
-    background: rgba(255,255,255,0.4);
-}
-
-.link-btn:hover {
-    background: #d6eaf8;
-    letter-spacing: 4px; /* 移上去字會拉開 */
-}
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>音樂播放器風格個人名片</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    /* 自訂背景圖案與微調 */
+    body {
+      background: linear-gradient(135deg, #a1c4fd 0%, #c2e9fb 100%);
+    }
+    /* 磨砂玻璃的核心加強版設定 */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+  </style>
 </head>
-<body>
-    <div class="container">
-        
-        <div class="hourglass">
-            <div class="hourglass-sand"></div>
-        </div> 
+<body class="flex items-center justify-center min-h-screen p-4">
 
-        <h1>xufumi</h1>
-        <div class="line"></div>
-        <p>
-            這是我的祕密空間<br>
-            靜謐、純淨、微涼<br>
-            如同沉入池底的呼吸
-        </p>
+  <div class="glass-card w-full max-w-2xl p-6 text-white shadow-lg transition-all duration-500" style="border-radius: 0.375rem;">
+    
+    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6 mb-6">
+      
+      <div class="w-32 h-32 flex-shrink-0 bg-white rounded-full flex items-center justify-center shadow-md overflow-hidden p-2">
+        <img id="avatar" src="https://placehold.co/150x150/ffffff/10b981?text=猫巷" alt="Logo" class="w-full h-full object-contain rounded-full">
+      </div>
+      
+      <div class="flex-1 text-center sm:text-left">
+        <h2 id="title" class="text-2xl font-semibold tracking-wide mb-1">貓巷 / 付弦 / 秋籟</h2>
         
-        <div class="links">
-            <a href="#" class="link-btn">關於我</a>
-            <a href="#" class="link-btn">作品集</a>
-            <a href="https://fumi1127.carrd.co/" class="link-btn">我的 Carrd</a>
+        <div class="border-b border-dashed border-white/40 my-2 w-full"></div>
+        
+        <div id="bio" class="space-y-1 text-sm text-white/90 font-light">
+          <p class="mt-2">大三 · INFP · 女性主義者</p>
+          <p>平面設計學習成長中......</p>
+          <p class="text-white/75 mt-2 text-xs">間歇性社恐，小窗開放，支持單刪</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-4">
+      <div class="w-full bg-white/20 h-1.5 rounded-full overflow-hidden cursor-pointer relative" id="progress-container">
+        <div id="progress-bar" class="bg-white h-full transition-all duration-300" style="width: 55%;"></div>
+      </div>
+      
+      <div class="flex items-center justify-between px-4 sm:px-12 text-white/80">
+        <button class="hover:text-white transition-colors"><i class="fas fa-repeat text-sm"></i></button>
+        
+        <div class="flex items-center gap-6">
+          <button id="prev-btn" class="hover:text-white transition-transform active:scale-95 text-lg">
+            <i class="fas fa-backward-step"></i>
+          </button>
+          
+          <button id="play-btn" class="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-all">
+            <i class="fas fa-pause text-sm"></i>
+          </button>
+          
+          <button id="next-btn" class="hover:text-white transition-transform active:scale-95 text-lg">
+            <i class="fas fa-forward-step"></i>
+          </button>
         </div>
         
-    </div> </body>
+        <button class="hover:text-white transition-colors text-red-400"><i class="fas fa-heart text-sm"></i></button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // 資料物件陣列 (Data Object)
+    const playlistData = [
+      {
+        title: "貓巷 / 付弦 / 秋籟",
+        avatar: "https://placehold.co/150x150/e0f2fe/0ea5e9?text=Cat", // 可替換為實際圖片 Base64 或 URL
+        progress: "55%",
+        bio: `
+          <p class="mt-2">大三 · INFP · 女性主義者</p>
+          <p>平面設計學習成長中......</p>
+          <p class="text-white/75 mt-2 text-xs">間歇性社恐，小窗開放，支持單刪</p>
+        `
+      },
+      {
+        title: "夜航星 / 晝夜 / 晴空",
+        avatar: "https://placehold.co/150x150/fef3c7/*d97706?text=Star",
+        progress: "30%",
+        bio: `
+          <p class="mt-2">研一 · INTJ · 數位游民</p>
+          <p>獨立全端開發者 / 攝影愛好者</p>
+          <p class="text-white/75 mt-2 text-xs">程式碼與詩，長期置頂，歡迎交流</p>
+        `
+      },
+      {
+        title: "山海 / 雲煙 / 暮色",
+        avatar: "https://placehold.co/150x150/dcfce7/16a34a?text=Mtn",
+        progress: "85%",
+        bio: `
+          <p class="mt-2">自由職業 · ENFP · 旅行創作者</p>
+          <p>正在環島中，捕捉落日與晚霞</p>
+          <p class="text-white/75 mt-2 text-xs">訊息常慢回，動態見朋友圈</p>
+        `
+      }
+    ];
+
+    // 目前播放的陣列索引 (Index)
+    let currentIndex = 0;
+
+    // 獲取 DOM 節點
+    const avatarEl = document.getElementById('avatar');
+    const titleEl = document.getElementById('title');
+    const bioEl = document.getElementById('bio');
+    const progressBarEl = document.getElementById('progress-bar');
+    
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    const playBtn = document.getElementById('play-btn');
+
+    // 更新介面函數
+    function updatePlayer(index) {
+      const currentData = playlistData[index];
+      
+      // 同步更新大頭貼、文字與進度條
+      avatarEl.src = currentData.avatar;
+      titleEl.textContent = currentData.title;
+      bioEl.innerHTML = currentData.bio;
+      progressBarEl.style.width = currentData.progress;
+    }
+
+    // 「下一首」按鈕事件
+    nextBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % playlistData.length; // 循環前進
+      updatePlayer(currentIndex);
+    });
+
+    // 「上一首」按鈕事件
+    prevBtn.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + playlistData.length) % playlistData.length; // 循環後退
+      updatePlayer(currentIndex);
+    });
+
+    // 播放/暫停按鈕視覺切換效果
+    let isPlaying = true;
+    playBtn.addEventListener('click', () => {
+      isPlaying = !isPlaying;
+      const icon = playBtn.querySelector('i');
+      if (isPlaying) {
+        icon.className = 'fas fa-pause text-sm';
+      } else {
+        icon.className = 'fas fa-play text-sm translate-x-[1px]'; // 播放圖示微調置中
+      }
+    });
+
+    // 初始化第一次載入
+    updatePlayer(currentIndex);
+  </script>
+</body>
 </html>
